@@ -32,11 +32,15 @@ def get_user_choice():
     selected_option = 0
     while True:
         print()
-        selected_option = int(input("Enter your choice (1-5): "))
-        if selected_option < 1 or selected_option > 5:
-            print("Please choose a number between 1 and 5")
+        usr_input = input("Enter your choice (1-5): ")
+        if usr_input.isnumeric():
+            selected_option = int(usr_input)
+            if selected_option < 1 or selected_option > 5:
+                print("Please choose a number between 1 and 5")
+            else:
+                return selected_option
         else:
-            return selected_option
+            print("Please Enter a number only")
 
 
 def do_as_in_option(choice):
@@ -56,7 +60,7 @@ def select(choice):
     do_as_in_option(choice)
     print()
     # Operation is completed
-    if input("Type 'again' to repeat the operation or press enter to go to main menu  ") =="again":
+    if input("Type 'again' to repeat the operation or press enter to go to main menu  ") == "again":
         do_as_in_option(choice)
 
 
