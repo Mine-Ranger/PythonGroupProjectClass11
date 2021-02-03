@@ -2,11 +2,11 @@ def get_usr_choice(no_of_options):
     selected_option = 0
     while True:
         print()
-        usr_input = input("Enter your choice (1-5): ")
+        usr_input = input("Enter your choice (1-"+str(no_of_options)+"): ")
         if usr_input.isnumeric():
             selected_option = int(usr_input)
             if selected_option < 1 or selected_option > no_of_options:
-                print("Please choose a number between 1 and 5")
+                print("Please choose a number between 1 and "+str(no_of_options))
             else:
                 return selected_option
         else:
@@ -128,6 +128,10 @@ def do_as_in_list_operations_menu(choice, init_lst, curr_lst):
         delete_element(curr_lst)
     if choice == 6:
         get_mainmenu()
+    # List operations ended
+    if exit_prompt('list operations')=='again':
+        do_as_in_list_operations_menu(choice, init_lst, curr_lst)
+
     get_list_operations_menu(init_lst, curr_lst)
 
 
@@ -139,6 +143,14 @@ def show_5_list_operations():
     get_list_operations_menu(init_lst, curr_lst)
 
 #######################################################################################################################################################
+def get_dict_from_user():
+    n= int(input("Enter the number of entries in the dictionary "))
+    dictionary={}
+    for i in range(0, n):
+        key= input("Enter the key")
+        value= input("Enter the value")
+        dictionary[key]= value
+    return dictionary
 
 
 def show_5_dictionary_methods_and_functions():
@@ -170,19 +182,15 @@ def do_as_in_mainmenu(option):
 
 
 def select(option, menu_name):
-    do_as(option, menu_name)
+    do_as_in_mainmenu(option)
     print()
     # Operation is completed
-    if input("Type 'again' to repeat the operation or press enter to return to "+menu_name+" menu  ") == "again":
-        do_as(option, menu_name)
-
-
-def do_as(option, menu_name):
-    if menu_name == 'main':
+    if exit_prompt(menu_name)=='agian':
         do_as_in_mainmenu(option)
-    if menu_name == "list operation":
-        pass
 
+
+def exit_prompt(menu_name):
+    return input("Type 'again' to repeat the operation or press enter to return to "+menu_name+" menu  ")
 
 def get_mainmenu():
     print(' '*10+"MAIN MENU")
