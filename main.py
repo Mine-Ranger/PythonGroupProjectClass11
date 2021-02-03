@@ -1,11 +1,11 @@
-def get_user_choice():
+def get_usr_choice(no_of_options):
     selected_option = 0
     while True:
         print()
         usr_input = input("Enter your choice (1-5): ")
         if usr_input.isnumeric():
             selected_option = int(usr_input)
-            if selected_option < 1 or selected_option > 5:
+            if selected_option < 1 or selected_option > no_of_options:
                 print("Please choose a number between 1 and 5")
             else:
                 return selected_option
@@ -72,11 +72,7 @@ def get_list_from_user():
 
 
 def append_an_element(List):
-    List.append(input("Enter element you want to append"))
-    if List[-1].isnumeric():
-        List[-1] = int(List[-1])
-    elif List[-1].replace('.', ' ', 1, inplace=False).isdigit():
-        List[-1] = float(List[-1])
+    List.append(input("Enter element you want to append "))
 
 
 def append_list(List):
@@ -85,42 +81,62 @@ def append_list(List):
 
 def insert_element(List):
     pos = int(input("On which position you want to insert the elemnt? "))
-    ele = input("Enter the element you want to insert")
+    ele = input("Enter the element you want to insert ")
     List.insert(pos, ele)
 
 
 def modify_element(List):
-    pos = int(input("Enter the position of the element you want to modify"))
-    value = input("Enter the new value you want to replace the current one")
+    pos = int(input("Enter the position of the element you want to modify "))
+    value = input("Enter the new value you want to replace the current one ")
     List[pos] = value
-
+ 
 
 def delete_element(List: list):
     value = 0
-    usr_input = input("Is your value a list?(yes or no)")
+    usr_input = input("Is your value a list?(yes or no) ")
     if usr_input == "yes":
         value = get_list_from_user()
     else:
-        value = input("Enter the value of the element you want to delete")
+        value = input("Enter the value of the element you want to delete ")
     List.remove(value)
 
 
-def get_list_operations_menu(List):
-    print("This is your list", List)
+def get_list_operations_menu(init_lst, curr_lst):
+    print("\nThis the list you have given:", init_lst)
+    print("This is current list:", curr_lst)
     print()
     print(' '*10+"LIST OPERATIONS MENU")
     print("1. Append an element")
     print("2. Append a list to the list")
     print("3. Insert an element at the desired position")
-    print("4, Modify an element by its position")
+    print("4. Modify an element by its position")
     print("5. Delete an element by its value")
+    print("6. To quit to main menu")
+    do_as_in_list_operations_menu(get_usr_choice(6), init_lst, curr_lst)
+
+
+def do_as_in_list_operations_menu(choice, init_lst, curr_lst):
+    if choice == 1:
+        append_an_element(curr_lst)
+    if choice == 2:
+        append_list(curr_lst)
+    if choice == 3:
+        insert_element(curr_lst)
+    if choice == 4:
+        modify_element(curr_lst)
+    if choice == 5:
+        delete_element(curr_lst)
+    if choice == 6:
+        get_mainmenu()
+    get_list_operations_menu(init_lst, curr_lst)
 
 
 def show_5_list_operations():
-    lst = []  # creating an empty list
-    lst.clear()
-    lst = get_list_from_user()
-    get_list_operations_menu(lst)
+    init_lst = []  # creating an empty list
+    init_lst.clear()
+    init_lst = get_list_from_user()
+    curr_lst = init_lst.copy()
+    get_list_operations_menu(init_lst, curr_lst)
 
 #######################################################################################################################################################
 
@@ -160,6 +176,7 @@ def select(option, menu_name):
     if input("Type 'again' to repeat the operation or press enter to return to "+menu_name+" menu  ") == "again":
         do_as(option, menu_name)
 
+
 def do_as(option, menu_name):
     if menu_name == 'main':
         do_as_in_mainmenu(option)
@@ -175,7 +192,7 @@ def get_mainmenu():
     print("3. Show any 5 list operations")
     print("4. Show 5 dictionary methods and functions")
     print("5. Exit")
-    select(get_user_choice(), 'main')
+    select(get_usr_choice(5), 'main')
 
 
 while True:
