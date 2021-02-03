@@ -39,7 +39,7 @@ def create_and_print_student_marksheet():
         sum += marksheet[m]
 
     marksheet["Sum"] = sum
-    marksheet["Percentage"] = str(sum/(no_of_subjects*100))+'%'
+    marksheet["Percentage"] = str( (sum / (no_of_subjects*100) )*100)+'%'
 
     # Printing marksheet
     print()
@@ -51,11 +51,11 @@ def create_and_print_student_marksheet():
 
 
 def do_abbreviation_of_3_words():
-    words = []
+    words=[]
     while len(words) != 3:
         print("Please enter only 3 words")
-        words = input()
-        words = words.split()
+        words=input()
+        words=words.split()
     for w in words:
         print(w[0], end=" ")
     print()
@@ -64,8 +64,8 @@ def do_abbreviation_of_3_words():
 
 
 def get_list_from_user():
-    l = []
-    n = int(input("Enter number of elements : "))
+    l=[]
+    n=int(input("Enter number of elements : "))
     for i in range(0, n):
         l.append(input("Enter element no"+str(i)+'\t'))
     return l
@@ -80,28 +80,28 @@ def append_list(List):
 
 
 def insert_element(List):
-    pos = int(input("On which position you want to insert the elemnt? "))
-    ele = input("Enter the element you want to insert ")
+    pos=int(input("On which position you want to insert the elemnt? "))
+    ele=input("Enter the element you want to insert ")
     List.insert(pos, ele)
 
 
 def modify_element(List):
-    pos = int(input("Enter the position of the element you want to modify "))
-    value = input("Enter the new value you want to replace the current one ")
-    List[pos] = value
- 
+    pos=int(input("Enter the position of the element you want to modify "))
+    value=input("Enter the new value you want to replace the current one ")
+    List[pos]=value
+
 
 def delete_element(List: list):
-    value = 0
-    usr_input = input("Is your value a list?(yes or no) ")
+    value=0
+    usr_input=input("Is your value a list?(yes or no) ")
     if usr_input == "yes":
-        value = get_list_from_user()
+        value=get_list_from_user()
     else:
-        value = input("Enter the value of the element you want to delete ")
+        value=input("Enter the value of the element you want to delete ")
     List.remove(value)
 
 
-def get_list_operations_menu(init_lst, curr_lst):
+def get_list_menu(init_lst, curr_lst):
     print("\nThis the list you have given:", init_lst)
     print("This is current list:", curr_lst)
     print()
@@ -111,7 +111,7 @@ def get_list_operations_menu(init_lst, curr_lst):
     print("3. Insert an element at the desired position")
     print("4. Modify an element by its position")
     print("5. Delete an element by its value")
-    print("6. To quit to main menu")
+    print("6. Return to main menu")
     do_as_in_list_operations_menu(get_usr_choice(6), init_lst, curr_lst)
 
 
@@ -129,32 +129,70 @@ def do_as_in_list_operations_menu(choice, init_lst, curr_lst):
     if choice == 6:
         get_mainmenu()
     # List operations ended
-    if exit_prompt('list operations')=='again':
+    if exit_prompt('list operations') == 'again':
         do_as_in_list_operations_menu(choice, init_lst, curr_lst)
 
-    get_list_operations_menu(init_lst, curr_lst)
+    get_list_menu(init_lst, curr_lst)
 
 
 def show_5_list_operations():
-    init_lst = []  # creating an empty list
+    init_lst=[]  # creating an empty list
     init_lst.clear()
-    init_lst = get_list_from_user()
-    curr_lst = init_lst.copy()
-    get_list_operations_menu(init_lst, curr_lst)
+    init_lst=get_list_from_user()
+    curr_lst=init_lst.copy()
+    get_list_menu(init_lst, curr_lst)
 
 #######################################################################################################################################################
+
+
 def get_dict_from_user():
-    n= int(input("Enter the number of entries in the dictionary "))
+    n=int(input("Enter the number of entries in the dictionary "))
     dictionary={}
     for i in range(0, n):
-        key= input("Enter the key")
-        value= input("Enter the value")
-        dictionary[key]= value
+        key=input("Enter the key")
+        value=input("Enter the value")
+        dictionary[key]=value
     return dictionary
 
 
+def do_as_in_dict_menu(choice, init_dict, curr_dict: dict):
+    if choice == 1:
+        curr_dict.clear()
+    if choice == 2:
+        curr_dict.keys()
+    if choice == 3:
+        curr_dict.values()
+    if choice == 4:
+        curr_dict.values()
+    if choice == 5:
+        pass
+    if choice == 6:
+        get_mainmenu()
+    # List operations ended
+    if exit_prompt('dictionary methods and functions') == 'again':
+        do_as_in_list_operations_menu(choice, init_dict, curr_dict)
+
+    get_dict_menu(init_dict, curr_dict)
+
+def get_dict_menu(init_dict, curr_dict):
+    print("\nThe dictionary you have created is this:", init_dict)
+    print("This is current dictionary:", curr_dict)
+    print()
+    print(' '*10+"DICTIONARY METHODS AND FUNCTIONS MENU")
+    print("1. Clear the dictionary")
+    print("2. Print the keys of the dictionary")
+    print("3. Print the values of the dictionary")
+    print("4. Print dictionary as a 2 dimensional tuple")
+    print("5. Print the length of the dictionary")
+    print("6. Return to main menu")
+    do_as_in_dict_menu(get_usr_choice(6), init_dict, curr_dict)
+
 def show_5_dictionary_methods_and_functions():
-    pass
+    init_dict={}
+    init_dict.clear()
+    init_dict=get_dict_from_user()
+    curr_dict=init_dict.copy()
+    get_dict_menu(init_dict, curr_dict)
 
 
 #######################################################################################################################################################
@@ -176,7 +214,7 @@ def do_as_in_mainmenu(option):
     if option == 3:
         show_5_list_operations()
     if option == 4:
-        show_5_list_operations()
+        show_5_dictionary_methods_and_functions()
     if option == 5:
         exit_program()
 
@@ -185,12 +223,13 @@ def select(option, menu_name):
     do_as_in_mainmenu(option)
     print()
     # Operation is completed
-    if exit_prompt(menu_name)=='agian':
+    if exit_prompt(menu_name) == 'agian':
         do_as_in_mainmenu(option)
 
 
 def exit_prompt(menu_name):
     return input("Type 'again' to repeat the operation or press enter to return to "+menu_name+" menu  ")
+
 
 def get_mainmenu():
     print(' '*10+"MAIN MENU")
