@@ -67,7 +67,7 @@ def get_list_from_user():
     l = []
     n = int(input("Enter number of elements : "))
     for i in range(0, n):
-        l.append(input("Enter element no"+str(i)+'\t'))
+        l.append(input("Enter element number "+str(i)+'\t'))
     return l
 
 
@@ -102,7 +102,7 @@ def delete_element(List: list):
 
 
 def get_list_menu(init_lst, curr_lst):
-    print("\nThis the list you have given:", init_lst)
+    print("\nThis the list you have initially created:", init_lst)
     print("This is current list:", curr_lst)
     print()
     print(' '*10+"LIST OPERATIONS MENU")
@@ -137,7 +137,7 @@ def do_as_in_list_operations_menu(choice, init_lst, curr_lst):
 
 def show_5_list_operations():
     init_lst = []  # creating an empty list
-    init_lst.clear()
+    init_lst.clear()# Clearing last term data
     init_lst = get_list_from_user()
     curr_lst = init_lst.copy()
     get_list_menu(init_lst, curr_lst)
@@ -154,8 +154,8 @@ def get_dict_from_user():
 
 
 def get_key_value_pair(dictionary):
-    key = input("Enter the key")
-    value = input("Enter the value")
+    key = input("Enter the key\t")
+    value = input("Enter the value\t")
     dictionary[key] = value
 
 
@@ -180,7 +180,7 @@ def do_as_in_dict_menu(choice, init_dict, curr_dict: dict):
 
 
 def get_dict_menu(init_dict, curr_dict):
-    print("\nThe dictionary you have created is this:", init_dict)
+    print("\nThe is the dictionary you initially created:", init_dict)
     print("This is current dictionary:", curr_dict)
     print()
     print(' '*10+"DICTIONARY METHODS AND FUNCTIONS MENU")
@@ -194,8 +194,8 @@ def get_dict_menu(init_dict, curr_dict):
 
 
 def show_5_dictionary_methods_and_functions():
-    init_dict = {}
-    init_dict.clear()
+    init_dict = {}#Creating an empty dictionary
+    init_dict.clear()# Clearing last term data
     init_dict = get_dict_from_user()
     curr_dict = init_dict.copy()
     get_dict_menu(init_dict, curr_dict)
