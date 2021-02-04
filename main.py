@@ -91,7 +91,7 @@ def modify_element(List):
     List[pos] = value
 
 
-def delete_element(List: list):
+def delete_element(List):
     value = 0
     usr_input = input("Is your value a list?(yes or no) ")
     if usr_input == "yes":
@@ -159,7 +159,7 @@ def get_key_value_pair(dictionary):
     dictionary[key] = value
 
 
-def do_as_in_dict_menu(choice, init_dict, curr_dict: dict):
+def do_as_in_dict_menu(choice, init_dict, curr_dict):
     if choice == 1:
         curr_dict.clear()
     if choice == 2:
