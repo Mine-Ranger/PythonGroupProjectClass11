@@ -39,7 +39,7 @@ def create_and_print_student_marksheet():
         sum += marksheet[m]
 
     marksheet["Sum"] = sum
-    marksheet["Percentage"] = str( (sum / (no_of_subjects*100) )*100)+'%'
+    marksheet["Percentage"] = str((sum / (no_of_subjects*100))*100)+'%'
 
     # Printing marksheet
     print()
@@ -51,11 +51,11 @@ def create_and_print_student_marksheet():
 
 
 def do_abbreviation_of_3_words():
-    words=[]
+    words = []
     while len(words) != 3:
         print("Please enter only 3 words")
-        words=input()
-        words=words.split()
+        words = input()
+        words = words.split()
     for w in words:
         print(w[0], end=" ")
     print()
@@ -64,8 +64,8 @@ def do_abbreviation_of_3_words():
 
 
 def get_list_from_user():
-    l=[]
-    n=int(input("Enter number of elements : "))
+    l = []
+    n = int(input("Enter number of elements : "))
     for i in range(0, n):
         l.append(input("Enter element no"+str(i)+'\t'))
     return l
@@ -80,24 +80,24 @@ def append_list(List):
 
 
 def insert_element(List):
-    pos=int(input("On which position you want to insert the elemnt? "))
-    ele=input("Enter the element you want to insert ")
+    pos = int(input("On which position you want to insert the elemnt? "))
+    ele = input("Enter the element you want to insert ")
     List.insert(pos, ele)
 
 
 def modify_element(List):
-    pos=int(input("Enter the position of the element you want to modify "))
-    value=input("Enter the new value you want to replace the current one ")
-    List[pos]=value
+    pos = int(input("Enter the position of the element you want to modify "))
+    value = input("Enter the new value you want to replace the current one ")
+    List[pos] = value
 
 
 def delete_element(List: list):
-    value=0
-    usr_input=input("Is your value a list?(yes or no) ")
+    value = 0
+    usr_input = input("Is your value a list?(yes or no) ")
     if usr_input == "yes":
-        value=get_list_from_user()
+        value = get_list_from_user()
     else:
-        value=input("Enter the value of the element you want to delete ")
+        value = input("Enter the value of the element you want to delete ")
     List.remove(value)
 
 
@@ -136,36 +136,40 @@ def do_as_in_list_operations_menu(choice, init_lst, curr_lst):
 
 
 def show_5_list_operations():
-    init_lst=[]  # creating an empty list
+    init_lst = []  # creating an empty list
     init_lst.clear()
-    init_lst=get_list_from_user()
-    curr_lst=init_lst.copy()
+    init_lst = get_list_from_user()
+    curr_lst = init_lst.copy()
     get_list_menu(init_lst, curr_lst)
 
 #######################################################################################################################################################
 
 
 def get_dict_from_user():
-    n=int(input("Enter the number of entries in the dictionary "))
-    dictionary={}
+    n = int(input("Enter the number of entries in the dictionary "))
+    dictionary = {}
     for i in range(0, n):
-        key=input("Enter the key")
-        value=input("Enter the value")
-        dictionary[key]=value
+        get_key_value_pair(dictionary)
     return dictionary
+
+
+def get_key_value_pair(dictionary):
+    key = input("Enter the key")
+    value = input("Enter the value")
+    dictionary[key] = value
 
 
 def do_as_in_dict_menu(choice, init_dict, curr_dict: dict):
     if choice == 1:
         curr_dict.clear()
     if choice == 2:
-        curr_dict.keys()
+        print(curr_dict.keys())
     if choice == 3:
-        curr_dict.values()
+        print(curr_dict.values())
     if choice == 4:
-        curr_dict.values()
+        get_key_value_pair(curr_dict)
     if choice == 5:
-        pass
+        print("The current length of the dictionary is\t"+str(len(curr_dict)))
     if choice == 6:
         get_mainmenu()
     # List operations ended
@@ -173,6 +177,7 @@ def do_as_in_dict_menu(choice, init_dict, curr_dict: dict):
         do_as_in_list_operations_menu(choice, init_dict, curr_dict)
 
     get_dict_menu(init_dict, curr_dict)
+
 
 def get_dict_menu(init_dict, curr_dict):
     print("\nThe dictionary you have created is this:", init_dict)
@@ -182,16 +187,17 @@ def get_dict_menu(init_dict, curr_dict):
     print("1. Clear the dictionary")
     print("2. Print the keys of the dictionary")
     print("3. Print the values of the dictionary")
-    print("4. Print dictionary as a 2 dimensional tuple")
-    print("5. Print the length of the dictionary")
+    print("4. Add or modify a key value pair")
+    print("5. Print the the length of the dictionary")
     print("6. Return to main menu")
     do_as_in_dict_menu(get_usr_choice(6), init_dict, curr_dict)
 
+
 def show_5_dictionary_methods_and_functions():
-    init_dict={}
+    init_dict = {}
     init_dict.clear()
-    init_dict=get_dict_from_user()
-    curr_dict=init_dict.copy()
+    init_dict = get_dict_from_user()
+    curr_dict = init_dict.copy()
     get_dict_menu(init_dict, curr_dict)
 
 
@@ -243,4 +249,5 @@ def get_mainmenu():
 
 
 while True:
+    #Main Loop
     get_mainmenu()
